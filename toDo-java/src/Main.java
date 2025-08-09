@@ -1,6 +1,18 @@
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
   public static void main(String[] args) {
-    System.out.println("GG");
+    SwingUtilities.invokeLater(() -> {
+      JFrame frame = new JFrame("My toDo");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setSize(800, 600);
+      frame.setLayout(new BorderLayout());
+
+      JLabel label = new JLabel("Welcome to my ToDo", SwingConstants.CENTER);
+      frame.add(label, BorderLayout.CENTER);
+
+      frame.setVisible(true);
+    });
     }
   }
