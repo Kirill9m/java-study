@@ -16,6 +16,16 @@ public class Main {
     JLabel panel = new JLabel("Welcome to my ToDo", SwingConstants.CENTER);
     frame.add(panel, BorderLayout.CENTER);
 
+    JTextField taskInput = new JTextField();
+    JButton addButton = new JButton("Add Task");
+
+    JPanel inputPanel = new JPanel();
+    inputPanel.setLayout(new FlowLayout());
+    inputPanel.add(taskInput);
+    inputPanel.add(addButton);
+
+    frame.add(inputPanel, BorderLayout.SOUTH);
+
     frame.setVisible(true);
   }
 }
