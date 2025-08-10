@@ -16,7 +16,7 @@ public class Main {
     JLabel panel = new JLabel("Welcome to my ToDo", SwingConstants.CENTER);
     frame.add(panel, BorderLayout.CENTER);
 
-    JTextField taskInput = new JTextField();
+    JTextField taskInput = new JTextField("New task", 20);
     JButton addButton = new JButton("Add Task");
 
     JPanel inputPanel = new JPanel();
@@ -25,6 +25,11 @@ public class Main {
     inputPanel.add(addButton);
 
     frame.add(inputPanel, BorderLayout.SOUTH);
+
+    DefaultListModel<String> taskListModel = new DefaultListModel<>();
+    JList<String> taskList = new JList<>(taskListModel);
+    JScrollPane scrollPane = new JScrollPane(taskList);
+    frame.add(scrollPane, BorderLayout.CENTER);
 
     frame.setVisible(true);
   }
