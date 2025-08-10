@@ -18,11 +18,13 @@ public class Main {
 
     JTextField taskInput = new JTextField("New task", 20);
     JButton addButton = new JButton("Add Task");
+    JButton deleteButton = new JButton("Delete Task");
 
     JPanel inputPanel = new JPanel();
     inputPanel.setLayout(new FlowLayout());
     inputPanel.add(taskInput);
     inputPanel.add(addButton);
+    inputPanel.add(deleteButton);
 
     frame.add(inputPanel, BorderLayout.SOUTH);
 
@@ -30,6 +32,21 @@ public class Main {
     JList<String> taskList = new JList<>(taskListModel);
     JScrollPane scrollPane = new JScrollPane(taskList);
     frame.add(scrollPane, BorderLayout.CENTER);
+
+    addButton.addActionListener(e -> {
+      String task = taskInput.getText().trim();
+      if(!task.isEmpty()) {
+        taskListModel.addElement(task);
+        taskInput.setText("");
+      }
+    });
+
+    deleteButton.addActionListener(e -> {
+      int selectedIndex = taskList.getSelectedIndex();
+      if(selectedIndex != -1) {
+        taskListModel.remove(selectedIndex);
+      }
+    });
 
     frame.setVisible(true);
   }
