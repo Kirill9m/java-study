@@ -20,11 +20,22 @@ public class Main {
     JButton addButton = new JButton("Add Task");
     JButton deleteButton = new JButton("Delete Task");
 
+    //Design buttons
+
+    Font font = new Font ("SansSerif", Font.BOLD, 20);
+    taskInput.setFont(font);
+    addButton.setFont(font);
+    deleteButton.setFont(font);
+
     JPanel inputPanel = new JPanel();
     inputPanel.setLayout(new FlowLayout());
     inputPanel.add(taskInput);
     inputPanel.add(addButton);
     inputPanel.add(deleteButton);
+
+    inputPanel.setBackground(new Color(230, 230, 250));
+    addButton.setBackground(new Color(144, 238, 144));
+    deleteButton.setBackground(new Color(240, 128, 128));
 
     frame.add(inputPanel, BorderLayout.SOUTH);
 
@@ -32,6 +43,9 @@ public class Main {
     JList<String> taskList = new JList<>(taskListModel);
     JScrollPane scrollPane = new JScrollPane(taskList);
     frame.add(scrollPane, BorderLayout.CENTER);
+
+    taskList.setFont(font);
+    taskList.setFixedCellHeight(30);
 
     addButton.addActionListener(e -> {
       String task = taskInput.getText().trim();
