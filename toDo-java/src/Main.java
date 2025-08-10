@@ -42,7 +42,13 @@ public class Main {
     DefaultListModel<String> taskListModel = new DefaultListModel<>();
     JList<String> taskList = new JList<>(taskListModel);
     JScrollPane scrollPane = new JScrollPane(taskList);
+    JLabel botResponseLabel = new JLabel("Task analyzer..");
+    frame.add(botResponseLabel, BorderLayout.NORTH);
     frame.add(scrollPane, BorderLayout.CENTER);
+
+    botResponseLabel.setFont(new Font("SansSerif", Font.ITALIC, 18));
+    botResponseLabel.setForeground(new Color(70, 70, 70));
+    botResponseLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
     taskList.setFont(font);
     taskList.setFixedCellHeight(30);
@@ -51,6 +57,8 @@ public class Main {
       String task = taskInput.getText().trim();
       if(!task.isEmpty()) {
         taskListModel.addElement(task);
+        String botReply = analyzeTask(task);
+        botResponseLabel.setText(botReply);
         taskInput.setText("");
       }
     });
@@ -63,5 +71,16 @@ public class Main {
     });
 
     frame.setVisible(true);
+  }
+
+  private static String analyzeTask(String task) {
+    String text = task.toLowerCase();
+    if(text.contains("today") || text.contains("now")) {
+      return "This is an important task!";
+    }
+    else if(text.contains("call") || text.contains("sms")) {
+      return "Don't forget to answer!";
+    }
+    return "Sounds good!";
   }
 }
