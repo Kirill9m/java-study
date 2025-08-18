@@ -6,7 +6,7 @@ public class Main {
     SwingUtilities.invokeLater(() -> {
       createAndShowGUI();
     });
-    }
+  }
 
   private static void createAndShowGUI() {
     JFrame frame = new JFrame("My toDo");
@@ -39,10 +39,10 @@ public class Main {
 
     frame.add(inputPanel, BorderLayout.SOUTH);
 
-    DefaultListModel<String> taskListModel = new DefaultListModel<>();
-    JList<String> taskList = new JList<>(taskListModel);
+    DefaultListModel<TaskWithBotReply> taskListModel = new DefaultListModel<>();
+    JList<TaskWithBotReply> taskList = new JList<>(taskListModel);
     JScrollPane scrollPane = new JScrollPane(taskList);
-    JLabel botResponseLabel = new JLabel("Task analyzer..");
+    JLabel botResponseLabel = new JLabel("Task analyzer active");
     frame.add(botResponseLabel, BorderLayout.NORTH);
     frame.add(scrollPane, BorderLayout.CENTER);
 
@@ -56,9 +56,8 @@ public class Main {
     addButton.addActionListener(e -> {
       String task = taskInput.getText().trim();
       if(!task.isEmpty()) {
-        taskListModel.addElement(task);
         String botReply = analyzeTask(task);
-        botResponseLabel.setText(botReply);
+        taskListModel.addElement(new TaskWithBotReply(task, botReply));
         taskInput.setText("");
       }
     });
