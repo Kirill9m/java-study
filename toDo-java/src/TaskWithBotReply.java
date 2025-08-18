@@ -9,6 +9,6 @@ public class TaskWithBotReply {
 
   @Override
   public String toString() {
-    return task + " - " + reply;
+    return task + " + " + reply;
   }
 }
